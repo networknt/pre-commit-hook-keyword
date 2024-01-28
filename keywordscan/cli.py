@@ -33,9 +33,9 @@ def parse_args(argv):
 
 def main(argv=None):
     args = parse_args(argv)
-    print(args.filenames)
-    print(args.keywords)
-    print(args.ignore)
+    print("\n".join(args.filenames))
+    print("\n".join(args.keywords))
+    print("\n".join(args.ignore))
     for filename in args.filenames:
         find_keywords(filename, args.keywords, ignore=args.ignore)
     return
