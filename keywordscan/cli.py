@@ -32,6 +32,7 @@ def parse_args(argv):
 
 
 def main(argv=None):
+    print("main is called")
     args = parse_args(argv)
     print("\n".join(args.filenames))
     print("\n".join(args.keywords))
