@@ -11,6 +11,6 @@ repos:
 -   repo: https://github.com/networknt/pre-commit-hook-keyword
     rev: master
     hooks:
-    - id: keyword
+    - id: keywordscan
       args: ["--keywords=abcdef,opqrst,uvwxyz"]
 ```

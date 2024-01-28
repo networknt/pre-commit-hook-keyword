@@ -1,7 +1,7 @@
--   id: keyword
-    name: Keyword
+-   id: keywordscan
+    name: KeywordScan
     description: "Scan keywords in text files so that they don't get added to the GitHub."
-    entry: keyword
+    entry: keywordscan
     language: python
     types: ["text"]
     args: []
