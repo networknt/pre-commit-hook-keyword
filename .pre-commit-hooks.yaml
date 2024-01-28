@@ -7,4 +7,4 @@
     args: []
     # for backward compatibility
     files: ''
-    minimum_pre_commit_version: 3.6.0
+    minimum_pre_commit_version: 3.4.0
