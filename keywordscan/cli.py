@@ -6,14 +6,14 @@ import sys
 def find_keywords(file_path, keyword_list, ignore=None):
     for name in ignore:
         if name in file_path:
-            return
-
+            return []
+    calls = []        
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, 1):
             for keyword in keyword_list:
                 if keyword.lower() in line.lower():
-                    print(f"Keyword '{keyword}' found in {file_path} at line {line_number}: {line.strip()}")
-
+                    calls.append(f"Keyword '{keyword}' found in {file_path} at line {line_number}: {line.strip()}")
+    return calls
 
 def parse_args(argv):
     def parse_set(value):
@@ -37,10 +37,18 @@ def main(argv=None):
     print("\n".join(args.filenames))
     print("\n".join(args.keywords))
     print("\n".join(args.ignore))
+    rc = 0
     for filename in args.filenames:
-        find_keywords(filename, args.keywords, ignore=args.ignore)
-    return
+        calls = find_keywords(filename, args.keywords, ignore=args.ignore)
+    if calls: 
+        rc = rc or 1
 
+    for call in calls:
+        print(
+            f'{filename}:{call.line}:{call.column}: '
+            f'replace {call.name}() with {BUILTIN_TYPES[call.name]}',
+        )
+    return rc
 
 if __name__ == "__main__":
     sys.exit(main())
