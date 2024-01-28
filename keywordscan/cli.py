@@ -44,10 +44,7 @@ def main(argv=None):
         rc = rc or 1
 
     for call in calls:
-        print(
-            f'{filename}:{call.line}:{call.column}: '
-            f'replace {call.name}() with {BUILTIN_TYPES[call.name]}',
-        )
+        print(call)
     return rc
 
 if __name__ == "__main__":
