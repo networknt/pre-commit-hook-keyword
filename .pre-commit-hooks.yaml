@@ -1,0 +1,10 @@
+-   id: keyword
+    name: Keyword
+    description: "Scan keywords in text files so that they don't get added to the GitHub."
+    entry: keyword
+    language: python
+    types: ["text"]
+    args: []
+    # for backward compatibility
+    files: ''
+    minimum_pre_commit_version: 3.6.0
