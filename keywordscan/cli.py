@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
-
+import sys
 
 def find_keywords(file_path, keyword_list, ignore=None):
     for name in ignore:
