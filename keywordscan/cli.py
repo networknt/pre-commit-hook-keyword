@@ -21,7 +21,7 @@ def parse_args(argv):
         return set(value.split(","))
     def parse_keyword(value):
         encoded_keywords = value.split(",")
-        return [keywords.encode('utf-8').decode('utf-8') for keyword in encoded_keywords]
+        return [keyword.encode('utf-8').decode('utf-8') for keyword in encoded_keywords]
 
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="+")
