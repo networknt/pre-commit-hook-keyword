@@ -9,9 +9,9 @@ def find_keywords(file_path, keyword_list, ignore=None):
             return []
     # keyword_list is a list of UTF-8 encoded strings, decode them here.
     decoded_keywords = [string.decode('utf-8') for string in keyword_list]
-    for decoded_keyword in decoded_keywords
+    for decoded_keyword in decoded_keywords:
         print(decoded_keyword)
-        
+
     calls = []        
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, 1):
