@@ -8,8 +8,6 @@ def find_keywords(file_path, keyword_list, ignore=None):
     for name in ignore:
         if name in file_path:
             return []
-    print(file_path)
-    print("\n".join(keyword_list))
     
     calls = []
     with open(file_path, 'r') as file:
@@ -39,9 +37,6 @@ def parse_args(argv):
 
 def main(argv=None):
     args = parse_args(argv)
-    
-    print("\n".join(args.keywords))
-
     rc = 0
     for filename in args.filenames:
         calls = find_keywords(filename, args.keywords, ignore=args.ignore)
