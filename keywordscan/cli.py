@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+import base64
 
 def find_keywords(file_path, keyword_list, ignore=None):
     for name in ignore:
@@ -10,12 +11,14 @@ def find_keywords(file_path, keyword_list, ignore=None):
     print(file_path)
     print("\n".join(keyword_list))
     
-    calls = []        
+    calls = []
     with open(file_path, 'r') as file:
         for line_number, line in enumerate(file, 1):
-            for keyword in keyword_list:
-                if keyword.lower() in line.lower():
-                    calls.append(f"Keyword '{keyword}' found in {file_path} at line {line_number}: {line.strip()}")
+            for encoded_keyword in keyword_list:
+                decoded_bytes = base64.b64decode(encoded_keyword)
+                decoded_keyword = decoded_bytes.decode('utf-8')
+                if decoded_keyword.lower() in line.lower():
+                    calls.append(f"Keyword '{decoded_keyword}' found in {file_path} at line {line_number}: {line.strip()}")
     return calls
 
 def parse_args(argv):
@@ -28,7 +31,7 @@ def parse_args(argv):
         "--ignore", type=parse_set, default=set(), help="Ignore any files that contain one of these words in the path."
     )
     parser.add_argument(
-        "-k", "--keywords", type=parse_set, default="eval", help="Scan these keywords."
+        "-k", "--keywords", type=parse_set, default="bm9jb21taXQ=", help="Scan these keywords."
     )
 
     return parser.parse_args(argv)
@@ -37,7 +40,7 @@ def parse_args(argv):
 def main(argv=None):
     args = parse_args(argv)
     
-    # print("\n".join(args.keywords))
+    print("\n".join(args.keywords))
 
     rc = 0
     for filename in args.filenames:
